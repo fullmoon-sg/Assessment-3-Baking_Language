@@ -10,6 +10,9 @@ class AccountSchema extends Schema {
       table.string('username',20).notNullable();
       table.string('email', 50).nullable();
       table.string('password',20).notNullable();
+
+      table.integer('customer_id').unsigned().notNullable();
+      table.foreign('customer_id').references('customers.id');
       table.timestamps()
     })
   }
