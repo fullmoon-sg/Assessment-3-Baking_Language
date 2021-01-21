@@ -27,5 +27,38 @@ class CustomerController {
     await customer.save();
     return response.redirect('/customers')
   }
+
+  async update({view,params}){
+    let customer = await Customer.find(params.customer_id)
+    return view.render('customers/update', {
+      customer : customer.toJSON()
+    })
+  }
+
+  async processUpdate({request,response,params}){
+    let customer = await Customer.find(params.customer_id);
+    let updateData = request.post();
+    customer.firstname = updateData.firstname;
+    customer.lastname = updateData.lastname;
+    customer.gender = updateData.gender;
+    customer.email = updateData.email;
+    customer.mobile_number = updateData.mobile_number;
+    customer.address = updateData.address;
+    customer.save();
+    response.route('/customers');
+  }
+
+  async delete({view,params}){
+    let customer = await Customer.find(params.customer_id);
+    return view.render('customers/delete',{
+      customer : customer.toJSON()
+    })
+  }
+
+  async processDelete({params,response}){
+    let customer = await Customer.find(params.customer_id);
+    await customer.delete();
+    response.route('/customers')
+  }
 }
 module.exports = CustomerController
