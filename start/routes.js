@@ -27,3 +27,8 @@ Route.get('customers/:customer_id/delete', 'CustomerController.delete')
 Route.post('customers/:customer_id/delete', 'CustomerController.processDelete')
 
 Route.get('products/','ProductController.index')
+Route.get('products/create','ProductController.create')
+Route.post('products/create', 'ProductController.processCreate')
+
+
+Route.get('cloudinary/sign','CloudinaryController.sign').as('cloudinary_sign')
