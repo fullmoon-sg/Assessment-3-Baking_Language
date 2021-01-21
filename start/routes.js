@@ -17,4 +17,9 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+
+Route.get('customers/', 'CustomerController.index')
+Route.get('customers/create', 'CustomerController.create')
+Route.post('customers/create','CustomerController.processCreate')
+
 Route.get('products/','ProductController.index')

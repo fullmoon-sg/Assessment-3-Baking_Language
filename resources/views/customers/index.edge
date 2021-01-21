@@ -1,0 +1,25 @@
+@layout('base')
+
+@section('content')
+<h1>Customer's Profile</h1>
+<table class="table">
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Gender</th>
+    <th>Email</th>
+    <th>Mobile Number</th>
+    <th>Address</th>
+  </tr>
+    @each(c in customers)
+    <tr>
+      <td>{{c.firstname}}</td>
+      <td>{{c.lastname}}</td>
+      <td>{{c.gender}}</td>
+      <td>{{c.email}}</td>
+      <td>{{c.mobile_number}}</td>
+      <td>{{c.address}}</td>
+    </tr>
+    @endeach
+</table>
+@endsection
