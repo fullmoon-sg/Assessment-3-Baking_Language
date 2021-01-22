@@ -36,6 +36,13 @@ class ProductController {
     return response.redirect('/products')
   }
 
+  async update({view,params}){
+    let product = await Product.find(params.product_id);
+    return view.render('products/update', {
+      product : product.toJSON();
+    })
+  }
+
 }
 
 module.exports = ProductController

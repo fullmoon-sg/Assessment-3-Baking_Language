@@ -4,18 +4,18 @@
 const Schema = use('Schema')
 
 class ProductSchema extends Schema {
-  up () {
+  up() {
     this.create('products', (table) => {
       table.increments()
-      table.string('category',100).notNullable();
-      table.string('description',500).notNullable();
+      table.string('category', 100).notNullable();
+      table.string('description', 500).notNullable();
       table.float('price').defaultTo(0).notNullable();
-      table.string('image').nullable();
+      table.string('image_url', 254).nullable();
       table.timestamps()
     })
   }
 
-  down () {
+  down() {
     this.drop('products')
   }
 }

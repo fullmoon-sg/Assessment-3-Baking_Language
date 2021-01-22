@@ -21,6 +21,7 @@
   </div>
   <div>
     <a href='#' class="btn btn-primary mt-3" id="upload_widget">Upload Image</a>
+    <input type="hidden" name="image_url" id="image_url"/>
   </div>
  <input type="submit" value="Add" class="btn btn-primary mt-3"/>
 </form>
@@ -51,6 +52,7 @@
     if (!error && result && result.event === 'success') {
       console.log("Upload success!")
       console.log(result.info);
+      document.querySelector('#image_url').value = result.info.url;
     }
   })
 
