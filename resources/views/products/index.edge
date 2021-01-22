@@ -1,20 +1,26 @@
 @layout('base')
 
 @section('content')
-<h1>Baking Language Alphabet</h1>
-<table class="table">
-  <tr>
-    <th>Category : </th>
-    <th>Description : </th>
-    <th>Price : $</th>
-  </tr>
+
+<div class="posts-wrapper">
+  <div class="row">
     @each(p in products)
-    <tr>
-      <td>{{p.category}}</td>
-      <td>{{p.description}}</td>
-      <td>{{p.price}}</td>
-      <td>{{p.image}}</td>
-    </tr>
+      <div class="col-sm-4 col-md-4 col-xs-12 single-post-wrapper">
+        <div class="card">
+          <div class="title text-center">
+            {{p.category}}
+          </div><hr/>
+          <div class="content">
+            <div class="post-image">
+              <img src="{{p.image_url}}" height="150px" width="150">
+            </div>
+            <div class="post-body text-center">
+              {{p.description}}
+            </div>
+          </div>
+        </div>
+      </div>
     @endeach
-</table>
+  </div>
+</div>
 @endsection

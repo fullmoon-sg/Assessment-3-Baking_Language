@@ -7,6 +7,10 @@ class ProductController {
 
   async index({view}){
     let products = await Product.all();
+    for(let p of products.toJSON())
+    {
+      console.log(p.image_url);
+    }
     return view.render('products/index', {
       products: products.toJSON()
     })
@@ -17,7 +21,7 @@ class ProductController {
       cloudinaryName: Config.get('cloudinary.name'),
       cloudinaryPreset : Config.get('cloudinary.preset'),
       cloudinaryApiKey: Config.get('cloudinary.api_key'),
-      signUrl: route('cloudinary_sign')
+      signUrl: '/cloudinary/sign'
     })
   }
 
@@ -27,6 +31,7 @@ class ProductController {
     product.category = body.category;
     product.description = body.description;
     product.price = body.price;
+    product.image_url = body.image_url;
     await product.save();
     return response.redirect('/products')
   }
