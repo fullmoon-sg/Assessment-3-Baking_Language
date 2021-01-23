@@ -20,10 +20,13 @@
                <li><label>Price : $</label> {{p.price}}</li>
               </ul>
             </div>
+            <a href="{{route('update_product',{product_id:p.id})}}" class="btn btn-primary">Update</a>
+             <a href="{{route('delete_product',{product_id:p.id})}}" class="btn btn-primary">Delete</a>
           </div>
         </div>
       </div>
     @endeach
   </div>
 </div>
+
 @endsection

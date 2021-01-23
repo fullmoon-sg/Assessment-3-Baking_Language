@@ -26,12 +26,12 @@ Route.post('customers/:customer_id/update','CustomerController.processUpdate')
 Route.get('customers/:customer_id/delete', 'CustomerController.delete')
 Route.post('customers/:customer_id/delete', 'CustomerController.processDelete')
 
-Route.get('products/','ProductController.index')
+Route.get('products/','ProductController.index').as('display_all_products')
 Route.get('products/create','ProductController.create')
 Route.post('products/create', 'ProductController.processCreate')
-Route.get('products/:product_id/update', 'ProductController.update')
+Route.get('products/:product_id/update', 'ProductController.update').as('update_product')
 Route.post('products/:product_id/update', 'ProductController.processUpdate')
-Route.get('products/:product_id/delete','ProductController.delete')
+Route.get('products/:product_id/delete','ProductController.delete').as('delete_product')
 Route.post('products/:product_id/delete','ProductController.processDelete')
 
 
