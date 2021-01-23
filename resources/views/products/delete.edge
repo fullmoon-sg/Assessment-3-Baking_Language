@@ -1,29 +1,33 @@
 @layout('base')
-
 @section('content')
-
+<form method="POST">
+  {{csrfField()}}
 <div class="posts-wrapper">
   <div class="row">
-    @each(p in products)
+
       <div class="col-sm-4 col-md-4 col-xs-12 single-post-wrapper">
         <div class="card">
           <div class="title text-center">
-            {{p.category}}
+            {{product.category}}
           </div><hr/>
           <div class="content">
             <div class="post-image">
-              <img src="{{p.image_url}}" height="150px" width="150">
+              <img src="{{product.image_url}}" height="150px" width="150">
             </div>
             <div class="post-body text-center">
               <ul>
-              <li><label>Description : </label> {{p.description}}</li>
-               <li><label>Price : $</label> {{p.price}}</li>
+              <li><label>Description : </label> {{product.description}}</li>
+               <li><label>Price : $</label> {{product.price}}</li>
               </ul>
             </div>
+             <div class= "alert alert-danger">
+              Confirm you want to delete ?
+              <input type="submit" class="btn btn-danger" value="Yes"/>
+             </div>
           </div>
         </div>
       </div>
-    @endeach
   </div>
 </div>
+</form>
 @endsection

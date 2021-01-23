@@ -22,6 +22,7 @@
   <div>
     <a href='#' class="btn btn-primary mt-3" id="upload_widget">Upload Image</a>
     <input type="hidden" name="image_url" id="image_url"/>
+    <img src="" id="uploaded_image" height="250" width="250" style="display:none"/>
   </div>
  <input type="submit" value="Add" class="btn btn-primary mt-3"/>
 </form>
@@ -53,6 +54,9 @@
       console.log("Upload success!")
       console.log(result.info);
       document.querySelector('#image_url').value = result.info.url;
+      document.querySelector('#upload_widget').style.display ='none';
+      document.querySelector('#uploaded_image').src = result.info.url;
+      document.querySelector('#uploaded_image').style.display="inline";
     }
   })
 

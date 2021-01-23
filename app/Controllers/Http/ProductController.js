@@ -7,10 +7,6 @@ class ProductController {
 
   async index({view}){
     let products = await Product.all();
-    for(let p of products.toJSON())
-    {
-      console.log(p.image_url);
-    }
     return view.render('products/index', {
       products: products.toJSON()
     })
@@ -39,10 +35,33 @@ class ProductController {
   async update({view,params}){
     let product = await Product.find(params.product_id);
     return view.render('products/update', {
-      product : product.toJSON();
+      product : product.toJSON()
     })
   }
 
+  async processUpdate({request,response,params}){
+    let product = await Product.find(params.product_id);
+    let updateData = request.post();
+    product.category = updateData.category;
+    product.description = updateData.description;
+    product.price = updateData.price;
+    product.image_url = updateData.image_url;
+    product.save();
+    response.route('/products')
+  }
+
+  async delete({view,params}){
+    let product = await Product.find(params.product_id);
+    return view.render('products/delete',{
+      product : product.toJSON()
+    })
+  }
+
+  async processDelete({params,response}){
+    let product = await Product.find(params.product_id);
+    await product.delete();
+    response.route('/products')
+  }
 }
 
 module.exports = ProductController
