@@ -1,0 +1,22 @@
+@layout('base')
+
+@section('content')
+
+<h1>My Order</h1>
+<div class="row">
+@each(o in order)
+<div class="card" style="width: 13rem;">
+  <img class="card-img-top" src="{{o.image_url}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{o.category}}</h5>
+    <p class="card-text">{{o.description}}</p>
+     <p class="card-text">Price : ${{o.price}} per item</p>
+      <p class="card-text"> Quality : {{o.qty}}</p>
+
+   <a href="{{route('remove_from_order',{product_id:o.id})}}" class="btn btn-danger">Delete</a>
+  </div>
+</div>
+ @endeach
+</div>
+
+@endsection

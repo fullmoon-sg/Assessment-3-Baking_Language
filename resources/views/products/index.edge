@@ -1,32 +1,23 @@
 @layout('base')
-
 @section('content')
 
-<div class="posts-wrapper">
-  <div class="row">
-    @each(p in products)
-      <div class="col-sm-4 col-md-4 col-xs-12 single-post-wrapper">
-        <div class="card">
-          <div class="title text-center">
-            {{p.category}}
-          </div><hr/>
-          <div class="content">
-            <div class="post-image">
-              <img src="{{p.image_url}}" height="150px" width="150">
-            </div>
-            <div class="post-body text-center">
-              <ul>
-              <li><label>Description : </label> {{p.description}}</li>
-               <li><label>Price : $</label> {{p.price}}</li>
-              </ul>
-            </div>
-            <a href="{{route('update_product',{product_id:p.id})}}" class="btn btn-primary">Update</a>
-             <a href="{{route('delete_product',{product_id:p.id})}}" class="btn btn-primary">Delete</a>
-          </div>
-        </div>
-      </div>
-    @endeach
+<h1>Display all Products</h1>
+<div class="row">
+@each(p in products)
+<div class="card" style="width: 13rem;">
+  <img class="card-img-top" src="{{p.image_url}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{p.category}}</h5>
+    <p class="card-text">{{p.description}}</p>
+     <p class="card-text">{{p.price}}</p>
+  <a href="{{route('update_product',{product_id:p.id})}}" class="btn btn-primary">Update</a>
+   <a href="{{route('delete_product',{product_id:p.id})}}" class="btn btn-primary">Delete</a>
+   <a href="{{route('add_to_order',{product_id:p.id})}}" class="btn btn-success">Add To Order</a>
+   <div class="card-footer">
+      <small class="text-muted">Updated : {{p.updated_at}} </small>
+    </div>
   </div>
 </div>
-
+ @endeach
+</div>
 @endsection

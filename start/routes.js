@@ -34,6 +34,9 @@ Route.post('products/:product_id/update', 'ProductController.processUpdate')
 Route.get('products/:product_id/delete','ProductController.delete').as('delete_product')
 Route.post('products/:product_id/delete','ProductController.processDelete')
 
-
 Route.get('cloudinary/sign','CloudinaryController.sign').as('cloudinary_sign')
 
+Route.get('order/','OrderController.index')
+Route.get('order/:product_id/add','OrderController.addToOrder').as('add_to_order')
+Route.get('order/clear', 'OrderController.clear')
+Route.get('order/:product_id/remove','OrderController.remove').as('remove_from_order')
