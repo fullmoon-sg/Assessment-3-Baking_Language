@@ -9,6 +9,7 @@ class OrderSchema extends Schema {
       table.increments()
       table.datetime('order_date').notNullable();
       table.integer('total_cost').notNullable();
+      table.integer('quantity').notNullable();
 
       table.integer('payment_id').unsigned().notNullable();
       table.foreign('payment_id').references('payments.id');

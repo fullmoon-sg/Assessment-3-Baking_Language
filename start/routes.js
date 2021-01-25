@@ -36,7 +36,13 @@ Route.post('products/:product_id/delete','ProductController.processDelete')
 
 Route.get('cloudinary/sign','CloudinaryController.sign').as('cloudinary_sign')
 
-Route.get('order/','OrderController.index')
+Route.get('orders/','OrderController.index')
 Route.get('order/:product_id/add','OrderController.addToOrder').as('add_to_order')
-Route.get('order/clear', 'OrderController.clear')
-Route.get('order/:product_id/remove','OrderController.remove').as('remove_from_order')
+
+Route.get('feedbacks/', 'FeedbackController.index').as('display_all_feedbacks')
+Route.get('feedbacks/create','FeedbackController.create');
+
+
+Route.get('accounts/login','AccountController.login')
+Route.get('accounts/create', 'AccountController.create').as('create_new_account')
+Route.post('accounts/create','AccountController.processNewAccount')

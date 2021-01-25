@@ -7,7 +7,6 @@ class OrderProductSchema extends Schema {
   up () {
     this.create('order_products', (table) => {
       table.increments()
-      table.integer('quantity').defaultTo(0).notNullable();
 
       table.integer('order_id').unsigned().notNullable();
       table.foreign('order_id').references('orders.id');

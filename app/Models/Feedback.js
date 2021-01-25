@@ -4,6 +4,15 @@
 const Model = use('Model')
 
 class Feedback extends Model {
+
+  Customer(){
+    return this.belongsTo('App/Models/Customer')
+  }
+
+   Product(){
+    return this.belongsToMany('App/Models/Product')
+  }
+
 }
 
 module.exports = Feedback

@@ -1,0 +1,35 @@
+@layout('base')
+@section('content')
+<div>
+  <form method="POST">
+    {{csrfField()}}
+  <h1>New Feedback Form</h1>
+  <h2>Please help us to improve our quality by fill in the details below. Thank You</h2>
+  <div>
+    <label class="form-label">First Name </label>
+    <input type="text" class="form-control" id="firstname"/>
+  </div>
+  <div>
+    <label class="form-label">Last Name </label>
+    <input type="text" class="form-control" id="lastname" />
+  </div>
+  <div>
+    <label class="form-label">Email </label>
+    <input type="email" class="form-control" id="email"/>
+  </div>
+  <div>
+    <label class="form-label">Item Category</label>
+    <select class="form-control" name="category">
+      <option value="Bread">Bread</option>
+      <option value="Macaron">Macaron</option>
+      <option value="Snack">Snack</option>
+    </select>
+  </div>
+  <div>
+    <label class="form-label">Feedback</label>
+    <textarea class="form-control" id="feedback" rows="5" placeholder="Please restrict to 500 words only"></textarea>
+  </div>
+  <input type="submit" value="Submit" class="btn btn-primary mt-3"/>
+</form>
+@endsection
+</div>

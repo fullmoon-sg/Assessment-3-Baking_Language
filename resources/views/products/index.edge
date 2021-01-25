@@ -10,8 +10,6 @@
     <h5 class="card-title">{{p.category}}</h5>
     <p class="card-text">{{p.description}}</p>
      <p class="card-text">{{p.price}}</p>
-  <a href="{{route('update_product',{product_id:p.id})}}" class="btn btn-primary">Update</a>
-   <a href="{{route('delete_product',{product_id:p.id})}}" class="btn btn-primary">Delete</a>
    <a href="{{route('add_to_order',{product_id:p.id})}}" class="btn btn-success">Add To Order</a>
    <div class="card-footer">
       <small class="text-muted">Updated : {{p.updated_at}} </small>
