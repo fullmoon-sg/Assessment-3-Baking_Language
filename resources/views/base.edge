@@ -9,6 +9,39 @@
     <title>Baking Language</title>
     </head>
   <body>
+      <header>
+    <nav class="navbar  navbar-dark bg-dark navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+              <div class="navbar-brand">
+                Baking Language
+              </div>
+            </div>
+        <div>
+              <a href="{{route("display_all_orders")}}">Cart</a>
+        </div>
+          <div>
+              <a href="/products/"><span class="glyphicon glyphicon-user"></span>Home</a>
+           </div>
+           @loggedIn
+              <div>
+              <a href="/products/"><span class="glyphicon glyphicon-user"></span>My site</a>
+            </div>
+            <div>
+              <a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+            </div>
+           @else
+            <div>
+              <a href="{{route('create_new_signup')}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+            </div>
+            <div>
+              <a href="{{route('logging_page')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+            </div>
+           @endloggedIn
+
+      </div>{{--  end of container-fluid div  --}}
+</nav>
+</header>
     <div class="container-fluid">
       @section('content')
       @endsection

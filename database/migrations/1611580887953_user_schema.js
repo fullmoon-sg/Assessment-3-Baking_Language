@@ -10,6 +10,9 @@ class UserSchema extends Schema {
       table.string('username', 80).notNullable().unique()
       table.string('email', 254).notNullable().unique()
       table.string('password', 60).notNullable()
+
+      table.integer('customer_id').unsigned().notNullable();
+      table.foreign('customer_id').references('customers.id');
       table.timestamps()
     })
   }

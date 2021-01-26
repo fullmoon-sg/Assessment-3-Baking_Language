@@ -11,8 +11,9 @@
     <p class="card-text">{{p.description}}</p>
      <p class="card-text">{{p.price}}</p>
    <a href="{{route('add_to_order',{product_id:p.id})}}" class="btn btn-success">Add To Order</a>
+    <a href="{{route('add_feedback')}}" class="btn btn-success mt-3 mb-3">Leave Feedback</a>
    <div class="card-footer">
-      <small class="text-muted">Updated : {{p.updated_at}} </small>
+      <small class="text-muted ">Updated : {{p.updated_at}} </small>
     </div>
   </div>
 </div>

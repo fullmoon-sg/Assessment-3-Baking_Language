@@ -7,9 +7,13 @@ const Hash = use('Hash')
 const Model = use('Model')
 
 class User extends Model {
+
+   Customer(){
+    return this.belongsTo('App/Models/Customer')
+  }
+
   static boot () {
     super.boot()
-
     /**
      * A hook to hash the user password before saving
      * it to the database.
@@ -19,6 +23,7 @@ class User extends Model {
         userInstance.password = await Hash.make(userInstance.password)
       }
     })
+
   }
 
   /**

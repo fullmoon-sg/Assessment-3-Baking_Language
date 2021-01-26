@@ -1,22 +1,35 @@
 'use strict'
 
-const Account = use('App/Models/Account')
+const User = use('App/Models/User')
 const Customer = use('App/Models/Customer')
 
-class AccountController {
+class UserController {
 
   login({view}){
-    return view.render('accounts/login')
+    return view.render('users/login')
   }
 
-  create({view}){
-    return view.render('accounts/create')
+  async login({request,auth,response,session}){
+    const {username,password} = request.all();
+
+    try{
+      await auth.attempt(username,password);
+      return response.redirect('/products')
+
+    }catch(error){
+      session.flash({loginError : "These credentials are invalids."});
+      return response.redirect('/users/login')
+    }
+  }
+
+  signup({view}){
+    return view.render('users/signup')
   }
 
   async processNewAccount({request,response}){
     let body = request.post();
     let customer = new Customer();
-    let account = new Account();
+    let account = new User();
     customer.firstname = body.firstname;
     customer.lastname = body.lastname;
     customer.gender = body.gender;
@@ -32,6 +45,7 @@ class AccountController {
     return response.redirect('../products/')
     }
 
+
 }
 
-module.exports = AccountController
+module.exports = UserController

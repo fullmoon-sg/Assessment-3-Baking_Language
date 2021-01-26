@@ -36,13 +36,22 @@ Route.post('products/:product_id/delete','ProductController.processDelete')
 
 Route.get('cloudinary/sign','CloudinaryController.sign').as('cloudinary_sign')
 
-Route.get('orders/','OrderController.index')
+Route.get('orders/','OrderController.index').as('display_all_orders')
 Route.get('order/:product_id/add','OrderController.addToOrder').as('add_to_order')
 
 Route.get('feedbacks/', 'FeedbackController.index').as('display_all_feedbacks')
 Route.get('feedbacks/create','FeedbackController.create');
 
 
-Route.get('accounts/login','AccountController.login')
-Route.get('accounts/create', 'AccountController.create').as('create_new_account')
-Route.post('accounts/create','AccountController.processNewAccount')
+// Route.get('users/login','UserController.login').as('logging_in')
+Route.on('users/login').render('users.login').as('logging');
+Route.post('users/login', 'UserController.login').validator('LoginUser').as('logging_page')
+
+Route.get('users/signup', 'UserController.signup').as('create_new_signup')
+Route.post('users/signup','UserController.processNewAccount').validator('CreateUser')
+
+Route.get('/logout', async({auth,response}) => {
+  await auth.logout();
+  return response.redirect('/products')
+})
+

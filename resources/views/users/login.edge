@@ -1,0 +1,31 @@
+@layout('base')
+@section('content')
+
+ <h1>Customer's Login Page</h1>
+ <div class="container">
+   @if(flashMessage('loginError'))
+   <span>{{flashMessage('loginError')}}</span>
+   @endif
+
+<form method="POST">
+  {{csrfField()}}
+
+  <div>
+    <label class="form-label">Please enter your username</label>
+    <input type="text" class="form-control" name="username" value="{{old('username','')}}">
+    <small class="form-text text-muted mb-3">We'll never share your account with anyone else.</small>
+    @if(hasErrorFor('username'))
+    <span> {{ getErrorFor('username') }} </span>
+    @endif
+  </div>
+  <div>
+    <label for="form-label">Password</label>
+    <input type="password" class="form-control" name="password" value="{{old('password','')}}">
+     <small  class="form-text text-muted mb-3">Never reveal your password to anyone, including us.</small>
+     @if(hasErrorFor('password'))
+     <span> {{ getErrorFor('password') }}</span>
+     @endif
+  </div>
+  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+</form>
+@endsection
