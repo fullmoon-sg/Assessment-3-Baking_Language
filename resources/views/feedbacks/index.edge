@@ -1,19 +1,20 @@
 @layout('base')
 @section('content')
+
 <div>
 <h1> Display all Customers' Feedback</h1>
-
+@each(f in feedbacks)
 <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
+    <img src="{{f.image}}" alt="Card image cap" height="200" width="200">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+      <h5 class="card-title">"{{f.category}}"</h5>
+      <p class="card-text">"{{f.comments}}"</p>
     </div>
     <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
+      <small class="text-muted">{{f.updated_at}}</small>
     </div>
   </div>
 </div>
-
+@endeach
 </div>
 @endsection
