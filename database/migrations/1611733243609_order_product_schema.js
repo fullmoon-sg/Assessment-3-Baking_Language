@@ -5,12 +5,13 @@ const Schema = use('Schema')
 
 class OrderProductSchema extends Schema {
   up () {
-    this.create('order_products', (table) => {
+    this.create('order_product', (table) => {
       table.increments()
+
       table.integer('order_id').unsigned().notNullable();
       table.foreign('order_id').references('orders.id');
 
-      table.integer('product_id').unsigned().notNullable(0);
+      table.integer('product_id').unsigned().notNullable();
       table.foreign('product_id').references('products.id');
 
       table.timestamps()
@@ -18,7 +19,7 @@ class OrderProductSchema extends Schema {
   }
 
   down () {
-    this.drop('order_products')
+    this.drop('order_product')
   }
 }
 

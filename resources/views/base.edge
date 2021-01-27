@@ -25,7 +25,7 @@
         </div>
            @loggedIn
               <div>
-              <a href="/products/"><span class="glyphicon glyphicon-user"></span>My site</a>
+              <a href="/products/"><span class="glyphicon glyphicon-user"></span>{{auth.user.username}}</a>
             </div>
             <div>
               <a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a>

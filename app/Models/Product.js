@@ -9,8 +9,8 @@ class Product extends Model {
       return this.belongsTo('App/Models/Feedback')
     }
 
-    Order(){
-      return this.belongsToMany('App/Model/Vet')
+    Orders(){
+      return this.belongsToMany('App/Model/Order')
     }
 
 }
