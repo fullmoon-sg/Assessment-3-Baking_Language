@@ -6,13 +6,14 @@ const Config = use('Config')
 
 class OrderController {
 
-  async addToOrder({params,session}){
- let order = await Order.all();
+async addToOrder({params,request,auth,response}){
  let product = await Product.find(params.product_id);
- order[product.id] = {
-   ...product,
-   quantity: 1
- }
+ let order = new Order();
+ order.quantity = 1;
+ order.total_cost = 450;
+ order.customer_id = auth.user.customer_id;
+ await order.save();
+ return response.redirect('display_all_orders')
 }
 
 async index({view}){

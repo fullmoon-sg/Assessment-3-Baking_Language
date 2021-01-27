@@ -7,12 +7,12 @@ class OrderProductSchema extends Schema {
   up () {
     this.create('order_products', (table) => {
       table.increments()
-
       table.integer('order_id').unsigned().notNullable();
       table.foreign('order_id').references('orders.id');
 
       table.integer('product_id').unsigned().notNullable(0);
       table.foreign('product_id').references('products.id');
+
       table.timestamps()
     })
   }

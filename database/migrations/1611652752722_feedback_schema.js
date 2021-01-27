@@ -3,12 +3,12 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-class FeedbacksSchema extends Schema {
+class FeedbackSchema extends Schema {
   up () {
     this.create('feedbacks', (table) => {
       table.increments()
       table.string('category',100).notNullable();
-      table.string('desciption',500).notNullable();
+      table.string('comments',500).notNullable();
       table.integer('ratings').notNullable();
 
       table.integer('customer_id').unsigned().notNullable();
@@ -16,6 +16,7 @@ class FeedbacksSchema extends Schema {
 
       table.integer('product_id').unsigned().notNullable();
       table.foreign('product_id').references('products.id');
+
       table.timestamps()
     })
   }
@@ -25,4 +26,4 @@ class FeedbacksSchema extends Schema {
   }
 }
 
-module.exports = FeedbacksSchema
+module.exports = FeedbackSchema

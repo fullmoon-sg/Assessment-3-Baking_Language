@@ -4,7 +4,6 @@
 const Model = use('Model')
 
 class Feedback extends Model {
-
   Customer(){
     return this.belongsTo('App/Models/Customer')
   }

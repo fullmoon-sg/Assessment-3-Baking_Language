@@ -1,35 +1,38 @@
 @layout('base')
 @section('content')
-<div>
+
   <form method="POST">
     {{csrfField()}}
   <h1>New Feedback Form</h1>
-  <h2>Please help us to improve our quality by fill in the details below. Thank You</h2>
+  <h3>Please help us to improve our quality by fill in the details below. Thank You</h3>
   <div>
-    <label class="form-label">First Name </label>
-    <input type="text" class="form-control" id="firstname"/>
-  </div>
-  <div>
-    <label class="form-label">Last Name </label>
-    <input type="text" class="form-control" id="lastname" />
-  </div>
-  <div>
-    <label class="form-label">Email </label>
-    <input type="email" class="form-control" id="email"/>
+    <label class="form-label">Username </label>
+    <input type="text" class="form-control mb-3" id="username" value="{{auth.user.username}}"/>
   </div>
   <div>
     <label class="form-label">Item Category</label>
-    <select class="form-control" name="category">
+    <select class="form-control mb-3" name="category">
       <option value="Bread">Bread</option>
       <option value="Macaron">Macaron</option>
       <option value="Snack">Snack</option>
     </select>
   </div>
   <div>
+    <label class="form-label">Rating</label>
+    <select class="form-control mb-3" name="ratings" value="5">
+      <option value="5">Can't wait to eat the next one</option>
+      <option value="4">Will Buy again</option>
+      <option value="3">Room for Improvment</option>
+       <option value="2">So-so-lah</option>
+      <option value="1">Won't Eat again</option>
+    </select>
+  </div>
+  <div>
     <label class="form-label">Feedback</label>
-    <textarea class="form-control" id="feedback" rows="5" placeholder="Please restrict to 500 words only"></textarea>
+    <textarea class="form-control mb-3" name="comments" rows="5" placeholder="Please restrict to 500 words only"></textarea>
   </div>
   <input type="submit" value="Submit" class="btn btn-primary mt-3"/>
 </form>
+
 @endsection
-</div>
+

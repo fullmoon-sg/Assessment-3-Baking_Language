@@ -29,19 +29,19 @@ class UserController {
   async processNewAccount({request,response}){
     let body = request.post();
     let customer = new Customer();
-    let account = new User();
+    let user = new User();
     customer.firstname = body.firstname;
     customer.lastname = body.lastname;
     customer.gender = body.gender;
     customer.email = body.email;
     customer.mobile_number = body.mobile_number;
     customer.address = body.address;
-    account.username = body.username;
-    account.email = body.email;
-    account.password = body.password;
+    user.username = body.username;
+    user.email = body.email;
+    user.password = body.password;
     await customer.save();
-    account.customer_id = customer.id;
-    await account.save()
+    user.customer_id = customer.id;
+    await user.save()
     return response.redirect('../products/')
     }
 

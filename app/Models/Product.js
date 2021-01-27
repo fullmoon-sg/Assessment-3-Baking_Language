@@ -5,13 +5,14 @@ const Model = use('Model')
 
 class Product extends Model {
 
-    Feedback() {
+  Feedback() {
       return this.belongsTo('App/Models/Feedback')
     }
 
     Order(){
       return this.belongsToMany('App/Model/Vet')
     }
+
 }
 
 module.exports = Product

@@ -4,14 +4,14 @@
 
 <h1>My Order</h1>
 <div class="row">
-@each(o in order)
+@each(p in product)
 <div class="card" style="width: 13rem;">
-  <img class="card-img-top" src="{{o.image_url}}" alt="Card image cap">
+  <img class="card-img-top" src="{{p.image_url}}" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title">{{o.category}}</h5>
-    <p class="card-text">{{o.description}}</p>
-     <p class="card-text">Price : ${{o.price}} per item</p>
-      <p class="card-text"> Quantity : {{o.quantity}}</p>
+    <h5 class="card-title">{{p.category}}</h5>
+    <p class="card-text">{{p.description}}</p>
+     <p class="card-text">Price : ${{p.price/100}} per item</p>
+      <p class="card-text"> Quantity : {{p.quantity}}</p>
 
    <a href="{{route('remove_from_order',{product_id:o.id})}}" class="btn btn-danger">Delete</a>
   </div>
