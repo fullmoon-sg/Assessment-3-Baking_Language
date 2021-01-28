@@ -1,0 +1,18 @@
+@layout('base')
+@section('content')
+
+<h1>Delete Items</h1>
+<div class="row">
+@each(d in delete)
+<div class="card" style="width: 13rem;">
+  <img class="card-img-top" src="{{d.image_url}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{d.category}}</h5>
+    <p class="card-text">{{d.description}}</p>
+     <p class="card-text">{{d.price}}</p>
+
+  </div>
+</div>
+ @endeach
+</div>
+@endsection

@@ -7,7 +7,7 @@ const Config = use('Config')
 class OrderController {
 
 
-async addToOrder({params,auth,response}){
+async addToOrder({params,auth,response,session}){
  let product = await Product.find(params.product_id);
  let order = new Order();
  if(order.hasOwnProperty(product.id)){
@@ -18,23 +18,27 @@ async addToOrder({params,auth,response}){
  order.total_cost = order.quantity * product.price;
  order.customer_id = auth.user.customer_id;
  await order.save();
- await order.Products().attach([product.id]);
+ await order.products().attach([product.id]);
+ session.flash({ notification: `${product.description} has been added.`});
  return response.redirect('/products')
 }
 
 async index({view,params,response}){
-  let order = await Order.query().with('Products').fetch();
+  let order = await Order.query().with('products').fetch();
   return view.render('orders/index', {
     order : order.toJSON()
   })
 }
 
-// delete({params,response}){
-//  let product = await Product.find(params.product_id);
-//   await order.delete();
-//   response.route('display_all_orders')
+async delete({params,response}){
+  let delete_order = await Order.find(params.product_id);
+ await delete_order.delete();
+ response.route('/orders')
 
-// }
 
+  // return view.render('orders/delete',{
+  //   delete : delete_order.toJSON()
+  // })
+}
 }
 module.exports = OrderController

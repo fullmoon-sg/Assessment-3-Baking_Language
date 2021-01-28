@@ -12,6 +12,11 @@ class ProductController {
     })
   }
 
+  async index_api({response}){
+    let products = await Product.all();
+    response.json(products)
+  }
+
   create({view}){
     return view.render('products/create', {
       cloudinaryName: Config.get('cloudinary.name'),

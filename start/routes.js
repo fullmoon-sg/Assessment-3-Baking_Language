@@ -27,6 +27,7 @@ Route.get('customers/:customer_id/delete', 'CustomerController.delete')
 Route.post('customers/:customer_id/delete', 'CustomerController.processDelete')
 
 Route.get('products/','ProductController.index').as('display_all_products')
+Route.get('products-api/','ProductController.index_api')
 Route.get('products/create','ProductController.create')
 Route.post('products/create', 'ProductController.processCreate')
 Route.get('products/:product_id/update', 'ProductController.update').as('update_product')
@@ -38,14 +39,16 @@ Route.get('cloudinary/sign','CloudinaryController.sign').as('cloudinary_sign')
 
 Route.get('orders/','OrderController.index').as('display_all_orders')
 Route.get('orders/:product_id/create','OrderController.addToOrder').as('add_to_order')
+Route.get('orders/:product_id/delete', 'OrderController.delete').as('remove_from_order')
 // Route.post('orders/:product/delete', 'OrderController.delete').as('remove_from_order')
+
+
 
 Route.get('feedbacks/', 'FeedbackController.index').as('display_all_feedbacks')
 Route.get('feedbacks/:product_id/create', 'FeedbackController.create').as('add_feedback')
 Route.post('feedbacks/:product_id/create','FeedbackController.processFeedback');
 
 
-// Route.get('users/login','UserController.login').as('logging_in')
 Route.on('users/login').render('users.login').as('logging');
 Route.post('users/login', 'UserController.login').validator('LoginUser').as('logging_page')
 

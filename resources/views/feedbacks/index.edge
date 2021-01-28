@@ -1,19 +1,18 @@
 @layout('base')
 @section('content')
 
-<div>
 <h1> Display all Customers' Feedback</h1>
+<div class ="row">
 @each(f in feedbacks)
-<div class="card">
-    <img src="{{f.image}}" alt="Card image cap" height="200" width="200">
+<div class="card" style="width: 13rem;">
+    <img class="card-img-top" src="{{f.image}}" alt="Card image cap" height="200" width="200">
     <div class="card-body">
       <h5 class="card-title">"{{f.category}}"</h5>
       <p class="card-text">"{{f.comments}}"</p>
     </div>
-    <div class="card-footer">
+      <div class="card-footer">
       <small class="text-muted">{{f.updated_at}}</small>
-    </div>
-  </div>
+      </div>
 </div>
 @endeach
 </div>

@@ -8,7 +8,7 @@ const Model = use('Model')
 
 class User extends Model {
 
-   Customer(){
+   customer(){
     return this.belongsTo('App/Models/Customer')
   }
 

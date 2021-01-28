@@ -4,11 +4,11 @@
 <div class="row">
  @each(o in order)
 <div class="card" style="width: 17rem;">
-  <img class="card-img-top" src="{{o.Products[0].image_url}}" alt="Card image cap">
+  <img class="card-img-top" src="{{o.products[0].image_url}}" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title">{{o.Products[0].category}}</h5>
-    <p class="card-text">{{o.Products[0].description}}</p>
-     <p class="card-text">Price : ${{o.Products[0].price/100}} per item</p>
+    <h5 class="card-title">{{o.products[0].category}}</h5>
+    <p class="card-text">{{o.products[0].description}}</p>
+     <p class="card-text">Price : ${{o.products[0].price/100}} per item</p>
      <p class="card-text"> Quantity : {{o.quantity}}</p>
       <p class="card-text"> Total Cost : ${{o.total_cost/100}}</p>
       <p class="card-text"> Updated : {{o.updated_at}}
