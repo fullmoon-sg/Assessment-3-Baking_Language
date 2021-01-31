@@ -43,7 +43,7 @@ Route.get('orders/:product_id/delete', 'OrderController.delete').as('remove_from
 // Route.post('orders/:product/delete', 'OrderController.delete').as('remove_from_order')
 
 
-
+Route.get('feedbacks-api/', 'FeedbackController.feedback_api')
 Route.get('feedbacks/', 'FeedbackController.index').as('display_all_feedbacks')
 Route.get('feedbacks/:product_id/create', 'FeedbackController.create').as('add_feedback')
 Route.post('feedbacks/:product_id/create','FeedbackController.processFeedback');
