@@ -23,7 +23,7 @@ Route.get('customers/create', 'CustomerController.create')
 Route.post('customers/create','CustomerController.processCreate')
 Route.get('customers/:customer_id/update','CustomerController.update')
 Route.post('customers/:customer_id/update','CustomerController.processUpdate')
-Route.get('customers/:customer_id/delete', 'CustomerController.delete')
+Route.get('customers/:customer_id/delete', 'CustomerController.delete').as('delete_customer')
 Route.post('customers/:customer_id/delete', 'CustomerController.processDelete')
 
 Route.get('products/','ProductController.index').as('display_all_products')
@@ -54,6 +54,11 @@ Route.post('users/login', 'UserController.login').validator('LoginUser').as('log
 
 Route.get('users/signup', 'UserController.signup').as('create_new_signup')
 Route.post('users/signup','UserController.processNewAccount').validator('CreateUser')
+
+Route.post('api/user', 'LoginController.register');
+Route.post('api/user/login','LoginController.login');
+Route.get('api/user/profile', 'LoginController.profile')
+
 
 Route.get('/logout', async({auth,response}) => {
   await auth.logout();

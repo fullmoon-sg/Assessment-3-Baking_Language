@@ -4,12 +4,12 @@
 <h1>Display all Products</h1>
 <div class="row">
 @each(p in products)
-<div class="card" style="width: 13rem;">
+<div class="card" style="width: 15rem;">
   <img class="card-img-top" src="{{p.image_url}}" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{p.category}}</h5>
     <p class="card-text">{{p.description}}</p>
-     <p class="card-text">{{p.price}}</p>
+     <p class="card-text">${{p.price/100}}</p>
    <a href="{{route('add_to_order',{product_id:p.id})}}" class="btn btn-success">Add To Order</a>
     <a href="{{route('add_feedback', {product_id:p.id})}}" class="btn btn-success mt-3 mb-3">Leave Feedback</a>
    <div class="card-footer">

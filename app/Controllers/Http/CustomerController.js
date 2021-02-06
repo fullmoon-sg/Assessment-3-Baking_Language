@@ -1,6 +1,7 @@
 'use strict'
 
 const Customer = use('App/Models/Customer')
+const User = use('App/Models/User')
 
 class CustomerController {
 
@@ -56,9 +57,13 @@ class CustomerController {
   }
 
   async processDelete({params,response}){
-    let customer = await Customer.find(params.customer_id);
+    let customerId = params.customer_id;
+    await User.query().where('customer_id', customerId).delete();
+    let customer = await Customer.find(customerId);
     await customer.delete();
     response.route('/customers')
   }
 }
+
+
 module.exports = CustomerController

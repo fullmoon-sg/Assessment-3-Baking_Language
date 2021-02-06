@@ -6,15 +6,14 @@ const Config = use('Config')
 
 class OrderController {
 
-
 async addToOrder({params,auth,response,session}){
  let product = await Product.find(params.product_id);
  let order = new Order();
- if(order.hasOwnProperty(product.id)){
-   order.quantity += parseInt(1)
- }else{
+//  if(await orders.has('quantity')){
+//    order.quantity += parseInt(1)
+//  }else{
  order.quantity = parseInt(1);
- }
+
  order.total_cost = order.quantity * product.price;
  order.customer_id = auth.user.customer_id;
  await order.save();
@@ -31,7 +30,8 @@ async index({view,params,response}){
 }
 
 async delete({params,response}){
-  let delete_order = await Order.find(params.product_id);
+let delete_order = await Order.find(params.product_id);
+ await delete_order.products().detach()
  await delete_order.delete();
  response.route('/orders')
 

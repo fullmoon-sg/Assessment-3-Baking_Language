@@ -16,7 +16,12 @@ class FeedbackController {
     })
   }
 
-  async create({view}){
+ async feedback_api({response}){
+   let feedbacks = await Feedback.all();
+   response.json(feedbacks)
+ }
+
+ create({view}){
     return view.render('feedbacks/create')
   }
 
