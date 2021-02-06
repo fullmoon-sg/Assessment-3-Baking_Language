@@ -11,34 +11,37 @@
   <body>
       <header>
     <nav class="navbar  navbar-dark bg-dark navbar-inverse">
-        <div class="container-fluid">
+        <div class="container-fluid" style="font-weight: bold">
             <div class="navbar-header">
               <div class="navbar-brand">
                 Baking Language
               </div>
             </div>
           <div>
-              <a href="/products/"><span class="glyphicon glyphicon-user"></span>Home</a>
+              <a  style="color: white" href="/products/"><span class="glyphicon glyphicon-user"></span>Home</a>
            </div>
              <div>
-              <a href="/customers/"><span class="glyphicon glyphicon-user"></span>Customer's profile</a>
+              <a  style="color: white" href="/customers/"><span class="glyphicon glyphicon-user"></span>Customer's profile</a>
            </div>
-             <div>
-              <a href="{{route("display_all_orders")}}">Cart</a>
+        <div>
+          <a style="color: white" href="/feedbacks/"><span class="glyphicon glyphicon-user"></span>Feedbacks</a>
         </div>
+             <div>
+              <a style="color: white" href="{{route("display_all_orders")}}">Cart</a>
+          </div>
            @loggedIn
               <div>
-              <a href="/products/"><span class="glyphicon glyphicon-user"></span>{{auth.user.username}}</a>
+              <a style="color: white" href="/products/"><span class="glyphicon glyphicon-user"></span>{{auth.user.username}}</a>
             </div>
             <div>
-              <a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+              <a style="color: white" href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
             </div>
            @else
             <div>
-              <a href="{{route('create_new_signup')}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+              <a style="color: white" href="{{route('create_new_signup')}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
             </div>
             <div>
-              <a href="{{route('logging_page')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+              <a style="color: white" href="{{route('logging_page')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
             </div>
            @endloggedIn
 

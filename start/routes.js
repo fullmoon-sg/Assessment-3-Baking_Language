@@ -28,7 +28,7 @@ Route.post('customers/:customer_id/delete', 'CustomerController.processDelete')
 
 Route.get('products/','ProductController.index').as('display_all_products')
 Route.get('products-api/','ProductController.index_api')
-Route.get('products/create','ProductController.create')
+Route.get('products/create','ProductController.create').as('create_product')
 Route.post('products/create', 'ProductController.processCreate')
 Route.get('products/:product_id/update', 'ProductController.update').as('update_product')
 Route.post('products/:product_id/update', 'ProductController.processUpdate')

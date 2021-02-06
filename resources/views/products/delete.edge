@@ -4,7 +4,6 @@
   {{csrfField()}}
 <div class="posts-wrapper">
   <div class="row">
-
       <div class="col-sm-4 col-md-4 col-xs-12 single-post-wrapper">
         <div class="card">
           <div class="title text-center">
@@ -15,16 +14,19 @@
               <img src="{{product.image_url}}" height="150px" width="150">
             </div>
             <div class="post-body text-center">
-              <ul>
-              <li><label>Description : </label> {{product.description}}</li>
-               <li><label>Price : $</label> {{product.price}}</li>
-              </ul>
+              <div>
+              <label>Description : </label> {{product.description}}
+              </div>
+              <div>
+              <label>Price : $</label> {{product.price/100}}
+              </div>
             </div>
              <div class= "alert alert-danger">
               Confirm you want to delete ?
-              <input type="submit" class="btn btn-danger" value="Yes"/>
+              <input type="submit" class="btn btn-danger mr-3" value="Yes"/>
+               <a href="{{route('display_all_products')}}" class="btn btn-success">Back</a>
              </div>
-                <a href="{{route('display_all_products')}}" class="btn btn-success">Back</a>
+
           </div>
         </div>
       </div>
