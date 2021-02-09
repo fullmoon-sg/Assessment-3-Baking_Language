@@ -58,7 +58,7 @@ Route.post('users/signup','UserController.processNewAccount').validator('CreateU
 Route.post('api/user', 'LoginController.register');
 Route.post('api/user/login','LoginController.login');
 Route.get('api/user/profile', 'LoginController.profile')
-
+Route.get('api/user/protected', '/LoginController.protected').middleware(['auth:api'])
 
 Route.get('/logout', async({auth,response}) => {
   await auth.logout();
