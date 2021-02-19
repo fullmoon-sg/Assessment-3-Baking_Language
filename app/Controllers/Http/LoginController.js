@@ -15,10 +15,9 @@ class LoginController {
     return response.json(token)
   }
 
-  async register({request,auth}){
+  async register({request,auth,response}){
     try {
       let data = request.post();
-      console.log(data)
       let newUser = new User();
       let newCustomer = new Customer();
       newCustomer.firstname = data.firstname;
@@ -33,7 +32,7 @@ class LoginController {
       await newCustomer.save();
       newUser.customer_id = newCustomer.id;
       await newUser.save();
-      // return response.json(newCustomer.toJSON(),newUser.toJSON())
+      return response.json(newCustomer.toJSON(),newUser.toJSON())
     } catch (e) {
       console.log(e);
     }
@@ -47,6 +46,10 @@ class LoginController {
       console.log(error);
       response.send(error)
     }
+  }
+
+  async protected({response,auth}){
+    response.json("Protected route access")
   }
 
 }

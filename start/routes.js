@@ -18,7 +18,7 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
-Route.get('customers/', 'CustomerController.index')
+Route.get('customers/', 'CustomerController.index').as('display_all_customers')
 Route.get('customers/create', 'CustomerController.create')
 Route.post('customers/create','CustomerController.processCreate')
 Route.get('customers/:customer_id/update','CustomerController.update')
@@ -59,6 +59,9 @@ Route.post('api/user', 'LoginController.register');
 Route.post('api/user/login','LoginController.login');
 Route.get('api/user/profile', 'LoginController.profile')
 Route.get('api/user/protected', '/LoginController.protected').middleware(['auth:api'])
+
+Route.get('api/cart','CartController.getCart').middleware(['auth:api']);
+Route.put('api/cart','CartController.updateCart').middleware(['auth:api']);
 
 Route.get('/logout', async({auth,response}) => {
   await auth.logout();
