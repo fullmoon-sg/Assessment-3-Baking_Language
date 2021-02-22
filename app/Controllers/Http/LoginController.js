@@ -38,10 +38,29 @@ class LoginController {
     }
   }
 
+  async updateProfile({request,auth,response}){
+    try{
+      let user = await auth.authenticator('api').getUser();
+      let updateData = request.post();
+      customer.firstname = updateData.firstname;
+    customer.lastname = updateData.lastname;
+    customer.gender = updateData.gender;
+    customer.email = updateData.email;
+    customer.mobile_number = updateData.mobile_number;
+    customer.address = updateData.address;
+    customer.save();
+    } catch(error)
+    {
+      response.send("Unable to update")
+    }
+  }
+
   async profile({response,auth}){
     try{
       let user = await auth.authenticator('api').getUser();
-      response.json(user);
+      let customer = await Customer.find(user.customer_id);
+      response.json(customer);
+
     } catch (error){
       console.log(error);
       response.send(error)

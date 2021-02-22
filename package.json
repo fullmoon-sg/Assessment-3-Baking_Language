@@ -29,7 +29,8 @@
     "@adonisjs/validator": "^5.0.6",
     "adonis-4-cloudinary": "^1.0.2",
     "cloudinary": "^1.23.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "stripe": "^8.137.0"
   },
   "devDependencies": {},
   "autoload": {

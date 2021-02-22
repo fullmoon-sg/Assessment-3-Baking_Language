@@ -57,11 +57,17 @@ Route.post('users/signup','UserController.processNewAccount').validator('CreateU
 
 Route.post('api/user', 'LoginController.register');
 Route.post('api/user/login','LoginController.login');
+Route.post('api/user/updateProfile', 'LoginController.updateProfile')
 Route.get('api/user/profile', 'LoginController.profile')
 Route.get('api/user/protected', '/LoginController.protected').middleware(['auth:api'])
 
 Route.get('api/cart','CartController.getCart').middleware(['auth:api']);
 Route.put('api/cart','CartController.updateCart').middleware(['auth:api']);
+
+Route.get('api/loginWithToken','LoginWithTokenController.login');
+
+Route.get('checkout/checkout','CheckOutController.checkout').as('checkout');
+Route.post('checkout/process','CheckOutController.processPayment')
 
 Route.get('/logout', async({auth,response}) => {
   await auth.logout();

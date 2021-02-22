@@ -19,8 +19,6 @@ class CartController {
       response.json(user.cart_content)
     }
 
-
-
 }
 
 module.exports = CartController
