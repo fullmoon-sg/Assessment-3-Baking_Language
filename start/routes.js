@@ -66,7 +66,7 @@ Route.put('api/cart','CartController.updateCart').middleware(['auth:api']);
 
 Route.get('api/loginWithToken','LoginWithTokenController.login');
 
-Route.get('checkout/checkout','CheckOutController.checkout').as('checkout');
+Route.get('api/checkout/checkout','CheckOutController.checkout').as('checkout');
 Route.post('checkout/process','CheckOutController.processPayment')
 
 Route.get('/logout', async({auth,response}) => {

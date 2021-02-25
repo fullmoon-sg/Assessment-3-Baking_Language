@@ -14,7 +14,6 @@ class CartController {
   async updateCart({ request, response, auth }) {
       let user = await auth.authenticator('api').getUser();
       user.cart_content = JSON.stringify(request.post().cart_content);
-      console.log(user.cart_content)
       await user.save();
       response.json(user.cart_content)
     }

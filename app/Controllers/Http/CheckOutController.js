@@ -4,49 +4,44 @@ const Config = use('Config')
 const Stripe = use('stripe')(Config.get('stripe.secret_key'))
 const CART_KEY = 'cart'
 
-const getCartFromUser = async(session,auth) => {
-
-    let cart = session.get(CART_KEY, {});
-    let user = null;
-    try {
-      user = await auth.getUser();
-    } catch {
-      user = null;
-    }
-
-    // if cart is null, get from user instead
-    try {
-      if (Object.keys(cart).length == 0 && user && user.cart_content) {
-        cart = JSON.parse(user.cart_content);
-      }
-    }
-    catch {
-      cart = {};
-    }
-    return cart;
+const getCartFromUser = async (session, auth) => {
+  let cart = session.get(CART_KEY, {});
+  let user = null;
+  try {
+    user = await auth.getUser();
+  } catch {
+    user = null;
   }
+  // if cart is null, get from user instead
+  try {
+    if (Object.keys(cart).length == 0 && user && user.cart_content) {
+      cart = JSON.parse(user.cart_content);
+    }
+  }
+  catch {
+    cart = {};
+  }
+  return cart;
+}
 
 const forgetCart = async () => {
-    session.forget(CART_KEY);
-    let user = null;
-    try {
-      user = await auth.getUser();
-      user.cart_content = "";
-      user.save();
-    } catch {
-      user = null;
-    }
+  session.forget(CART_KEY);
+  let user = null;
+  try {
+    user = await auth.getUser();
+    user.cart_content = "";
+    user.save();
+  } catch {
+    user = null;
   }
+}
 
-  class CheckOutController{
+class CheckOutController {
   async checkout({ response, session, view, auth }) {
     // 1. create line items (i.e what the user is paying for)
     let cart = await getCartFromUser(session, auth);
-
     // ...convert the cart from object to an array
     let cartArray = Object.values(cart);
-
-
     // let lineItems = cartArray.map(cartItem => {
     //   // NOTE: the keys in this object are required by stripe. So we have to follow
     //   return {
@@ -57,7 +52,7 @@ const forgetCart = async () => {
     //   }
     // })
 
-      let lineItems = cartArray.map(cartItem => {
+    let lineItems = cartArray.map(cartItem => {
       // NOTE: the keys in this object are required by stripe. So we have to follow
       return {
         'name': cartItem.category,
@@ -69,7 +64,6 @@ const forgetCart = async () => {
 
     // ...create meta-data
     let metaData = JSON.stringify(cartArray);
-
     // 2. create the payment
     // note: all the keys below are specified by stripe
     const payment = {
@@ -81,10 +75,8 @@ const forgetCart = async () => {
         'orders': metaData
       }
     }
-
     // 3. send that payment session to stripe (to get the session id)
     let stripeSession = await Stripe.checkout.sessions.create(payment);
-
     // 4. send the session id to our view (the view will do the redirect)
     return view.render('checkout/checkout', {
       sessionId: stripeSession.id,
@@ -93,11 +85,11 @@ const forgetCart = async () => {
   }
 
   processPayment({ request, response }) {
+    console.log("Enter here?")
     let payload = request.raw();
     let sigHeader = request.header('stripe-signature');
     let event = null;
     let endpointSecret = Config.get('stripe.endpoint_secret')
-
     // verify with Stripe that it is they who actually send
     // the data
     try {
@@ -109,20 +101,16 @@ const forgetCart = async () => {
         'error': e.message
       })
     }
-
     if (event.type == 'checkout.session.completed') {
       let stripeSession = event.data.object;
       console.log("WEBHOOK CALLBACK")
       console.log(stripeSession);
       console.log(stripeSession.metadata);
     }
-
     response.json({
       received: true
     })
   }
-  }
-
-
+}
 
 module.exports = CheckOutController

@@ -6,7 +6,7 @@ const User = use('App/Models/User')
 class CustomerController {
 
   async index({view}){
-
+    let customers = await Customer.all();
    return view.render('customers/index', {
      customers: customers.toJSON()
    })

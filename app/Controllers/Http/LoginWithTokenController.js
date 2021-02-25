@@ -15,7 +15,8 @@ class LoginWithTokenController {
     if(token){
       let user = await User.find(token.user_id);
       await auth.login(user);
-      response.send("User has login successfully")
+      // response.send("User has login successfully")
+      response.route('checkout/checkout')
     } else {
       response.send("Invalid Token")
     }
