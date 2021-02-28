@@ -111,6 +111,12 @@ class CheckOutController {
       received: true
     })
   }
+
+  async index({view}){
+   return view.render('checkout/index')
+  }
+
+
 }
 
 module.exports = CheckOutController
