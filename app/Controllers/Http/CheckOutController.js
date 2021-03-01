@@ -42,20 +42,12 @@ class CheckOutController {
     let cart = await getCartFromUser(session, auth);
     // ...convert the cart from object to an array
     let cartArray = Object.values(cart);
-    // let lineItems = cartArray.map(cartItem => {
-    //   // NOTE: the keys in this object are required by stripe. So we have to follow
-    //   return {
-    //     'name': cart.category,
-    //     'amount': cart.price,
-    //     'quantity': cart.quantity,
-    //     'currency': 'SGD'
-    //   }
-    // })
 
     let lineItems = cartArray.map(cartItem => {
       // NOTE: the keys in this object are required by stripe. So we have to follow
       return {
         'name': cartItem.category,
+        'description': cartItem.description,
         'amount': cartItem.price,
         'quantity': cartItem.quantity,
         'currency': 'SGD'
