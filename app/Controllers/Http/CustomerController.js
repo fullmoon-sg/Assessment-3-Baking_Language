@@ -59,11 +59,11 @@ class CustomerController {
   async processDelete({params,response}){
     let customerId = params.customer_id;
     await User.query().where('customer_id', customerId).delete();
+    await delete_user.delete();
     let customer = await Customer.find(customerId);
     await customer.delete();
     response.route('/customers')
   }
 }
-
 
 module.exports = CustomerController

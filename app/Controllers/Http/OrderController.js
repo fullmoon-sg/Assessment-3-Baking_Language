@@ -9,11 +9,7 @@ class OrderController {
 async addToOrder({params,auth,response,session}){
  let product = await Product.find(params.product_id);
  let order = new Order();
-//  if(await orders.has('quantity')){
-//    order.quantity += parseInt(1)
-//  }else{
  order.quantity = parseInt(1);
-
  order.total_cost = order.quantity * product.price;
  order.customer_id = auth.user.customer_id;
  await order.save();
