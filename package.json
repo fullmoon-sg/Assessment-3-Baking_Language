@@ -30,7 +30,8 @@
     "adonis-4-cloudinary": "^1.0.2",
     "cloudinary": "^1.23.0",
     "mysql": "^2.18.1",
-    "stripe": "^8.137.0"
+    "stripe": "^8.137.0",
+    "url-parse": "^1.5.1"
   },
   "devDependencies": {},
   "autoload": {
